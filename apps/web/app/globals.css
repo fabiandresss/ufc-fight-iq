@@ -3,19 +3,33 @@
 @tailwind utilities;
 
 body {
-  @apply bg-bg text-slate-200 antialiased;
+  @apply bg-black text-zinc-100 antialiased;
+}
+h1,
+h2,
+h3 {
+  @apply font-black uppercase tracking-tight;
+}
+h1 {
+  @apply text-3xl;
 }
 .card {
-  @apply rounded-xl border border-line bg-panel p-5;
+  @apply border border-zinc-800 bg-zinc-950 p-5;
 }
 .label {
-  @apply text-xs uppercase tracking-wider text-slate-400;
+  @apply text-xs font-bold uppercase tracking-widest text-zinc-400;
+}
+.btn {
+  @apply bg-ufc px-4 py-2 text-sm font-bold uppercase tracking-wide text-white hover:bg-red-700;
 }
 select,
 input {
-  @apply rounded-lg border border-line bg-bg px-3 py-2 text-sm text-slate-100;
+  @apply border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-white placeholder:text-zinc-500;
+}
+th {
+  @apply text-left text-xs font-bold uppercase tracking-wider text-zinc-400;
 }
 :focus-visible {
-  outline: 2px solid #f5b942;
+  outline: 2px solid #fff;
   outline-offset: 2px;
 }

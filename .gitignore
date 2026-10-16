@@ -1,0 +1,6 @@
+dataset/
+*.ipynb
+node_modules/
+.next/
+out/
+__pycache__/

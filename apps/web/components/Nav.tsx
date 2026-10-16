@@ -1,40 +1,38 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 const links = [
-  { href: "/", label: "Dashboard" },
-  { href: "/predictor/", label: "Fight Predictor" },
-  { href: "/fighters/", label: "Fighters" },
-  { href: "/models/", label: "Modelos" },
-  { href: "/analyst/", label: "AI Analyst" },
+  { href: "/", label: "Inicio" },
+  { href: "/fighters/", label: "Peleadores" },
+  { href: "/fights/", label: "Peleas" },
   { href: "/events/", label: "Eventos" },
+  { href: "/predictor/", label: "Predictor" },
+  { href: "/analyst/", label: "IA" },
+  { href: "/models/", label: "Modelos" },
 ];
 
 export default function Nav() {
-  const path = usePathname() || "/";
-  const active = (href: string) => (href === "/" ? path === "/" : path.startsWith(href.replace(/\/$/, "")));
+  const path = (usePathname() || "/").replace(/\/$/, "") || "/";
+  const active = (h: string) => {
+    const t = h.replace(/\/$/, "") || "/";
+    if (t === "/") return path === "/";
+    const singular = t.replace(/s$/, "");
+    return path === t || path === singular;
+  };
   return (
-    <header className="sticky top-0 z-10 border-b border-line bg-bg/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
-        <span className="text-lg font-bold tracking-tight">
-          UFC <span className="text-accent">Fight IQ</span>
-        </span>
-        <nav aria-label="Principal" className="flex flex-wrap gap-1 text-sm">
+    <header className="sticky top-0 z-20 border-b-2 border-ufc bg-black">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-2 px-4 py-3">
+        <Link href="/" aria-label="UFC Fight IQ - inicio"><Logo /></Link>
+        <nav aria-label="Principal" className="flex flex-wrap gap-1 text-sm font-bold uppercase tracking-wide">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              aria-current={active(l.href) ? "page" : undefined}
-              className={`rounded-md px-3 py-1.5 ${active(l.href) ? "bg-line text-white" : "text-slate-400 hover:text-white"}`}
-            >
+            <Link key={l.href} href={l.href} aria-current={active(l.href) ? "page" : undefined}
+              className={`px-3 py-1.5 ${active(l.href) ? "bg-ufc text-white" : "text-zinc-300 hover:text-white"}`}>
               {l.label}
             </Link>
           ))}
         </nav>
-      </div>
-      <div className="bg-accent/10 py-1 text-center text-xs text-accent">
-        Datos MOCK ficticios: ninguna cifra, peleador o predicción es real. No es consejo de apuestas.
       </div>
     </header>
   );
