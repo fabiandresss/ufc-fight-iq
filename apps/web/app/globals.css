@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-bg text-slate-200 antialiased;
+}
+.card {
+  @apply rounded-xl border border-line bg-panel p-5;
+}
+.label {
+  @apply text-xs uppercase tracking-wider text-slate-400;
+}
+select,
+input {
+  @apply rounded-lg border border-line bg-bg px-3 py-2 text-sm text-slate-100;
+}
+:focus-visible {
+  outline: 2px solid #f5b942;
+  outline-offset: 2px;
+}
